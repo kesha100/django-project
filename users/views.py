@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegisterForm
-
+from .forms import UserRegisterForm , UserUpdateForm, ProfileUpdateform
 # Create your views here.
 
 def register(request):
@@ -18,4 +17,12 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 def profile(request):
-    return render(request, 'users/profile.html')
+
+    u_form = UserUpdateForm()
+    p_form = ProfileUpdateform()
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+    return render(request, 'users/profile.html', context)
